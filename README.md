@@ -1,73 +1,46 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Master List Microsoft Teams Feed
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This feed tells you when you have unread Microsoft Teams messages.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+It uses puppeteer to read your Microsoft Teams DOM and notifies whenever it notices that you have unread messages.
 
 ## Installation
 
-```bash
-$ npm install
-```
+### NPM
+- Install by running `npm install @zeyber/master-list-microsoft-teams-feed` in the terminal.
+- Run from installed location with `PORT=XXXX node ./node_modules/@zeyber/master-list-microsoft-teams-feed/dist/main.js`. Define the port by replacing `PORT=XXXX` (eg. `PORT=3010 ...`). The default port is 3000.
 
-## Running the app
+### Clone from Github
+- Clone with `git clone https://github.com/Zeyber/master-list-microsoft-teams-feed`.
 
-```bash
-# development
-$ npm run start
+#### Build
+- Build with `npm run build`.
+- Run with `PORT=3000 node dist/main.js`.
 
-# watch mode
-$ npm run start:dev
+#### Run in Development mode
+- Start with `PORT=3000 npm start`.
 
-# production mode
-$ npm run start:prod
-```
+## Usage
 
-## Test
+### Authentication
 
-```bash
-# unit tests
-$ npm run test
+When first starting the app, it will need to authenticate you in a browser session in order to initialize. In order to do this, chromium will be opened with the help of puppeteer and you will be taken to the service host's login page. After logging in, the browser will close and a headless version of chromium will be restarted to continue the session and complete initialization.
 
-# e2e tests
-$ npm run test:e2e
+### Reading Feed Data
 
-# test coverage
-$ npm run test:cov
-```
+After the feed is initialized, you will be able to request JSON formatted data from the feed at its address. 
+To see this in action:
+- Open your browser and go url `http://localhost:3000` (or whichever address you have the app running).
+- You will see a JSON-formatted response with relevant data.
 
-## Support
+This format is structured in a way interpretable by the [Master List](https://github.com/Zeyber/master-list) apps. But you could also use this feed for other purposes if you wanted.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## About Master List
 
-## Stay in touch
+An organizational list that leverages third-party APIs and displays information in a simple list.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Sometimes managing so many tasks can become overwhelming (eg. emails, agenda, tasks, social media, communications across multiple platforms). It is easy lose track of what needs to be done, when and how much you really need to do.
 
-## License
+Master List has an [App version for Browser](https://github.com/Zeyber/master-list) and a [CLI version](https://github.com/Zeyber/master-list-cli). It features connecting to APIs or feeds that can be configured to read relevant important information that ordinary users may require.
 
-Nest is [MIT licensed](LICENSE).
+[Find out more here](https://github.com/Zeyber/master-list)
