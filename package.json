@@ -1,6 +1,6 @@
 {
   "name": "@zeyber/master-list-microsoft-teams-feed",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Master List Feed for Microsoft Teams Unread Messages",
   "author": "Caine Rotherham",
   "scripts": {
